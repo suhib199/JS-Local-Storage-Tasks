@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1(Question1)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lobster&family=Roboto+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="Container">
+        <div class="tiltle">
+          <h1>Personal Info</h1>
+        </div>
+        <form action="" id="inputForm">
+          <label for="name">Your Name:</label>
+          <input type="text" placeholder="Entre your full name" id="name" />
+
+          <label for="age">Your Age:</label>
+          <input type="number" placeholder="Entre your age" id="age" min="1" />
+
+          <label for="gender">Define Your Gender:</label>
+          <fieldset>
+            <legend>Your Gender</legend>
+            <div class="gender">
+              <input type="radio" id="male" name="gender" />
+              <label for="male">Male</label>
+              <input type="radio" id="female" name="gender" />
+              <label for="female">Female</label>
+            </div>
+          </fieldset>
+          <label for="description">Brief Description About You:</label>
+          <textarea
+            id="description"
+            cols="50"
+            rows="5"
+            maxlength="300"
+            placeholder=" Aa maximum 300 characters"
+          ></textarea>
+
+          <label for="education">Educational Details :</label>
+          <input
+            type="text"
+            id="education"
+            placeholder="Enter your educational details (Your major and university )"
+          />
+          <label for="description">Define Your prefer Languages:</label>
+          <fieldset class="language">
+            <legend>Languages</legend>
+            <div class="language">
+              <input type="checkbox" id="Java" />
+              <label for="Java">Java Script</label>
+
+              <input type="checkbox" id="C#" />
+              <label for="C#">C#</label>
+
+              <input type="checkbox" id="C++" />
+              <label for="C++">C++</label>
+            </div>
+          </fieldset>
+          <input type="submit" id="submit" />
+          <p id="cardsPreview">Preview the cards</p>
+        </form>
+      </div>
+    </div>
+    <!-- ------------------------------------------------------------Cards---------------------------------- -->
+    <div class="row-containr">
+      <div class="colums">
+    
+        </div>
+      </div>
+    </div>
+    <script src="Animaton.js"></script>
+  </body>
+</html>

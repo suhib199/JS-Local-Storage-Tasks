@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS-Local Storage-Task5</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    hr {
+      margin-top: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<hr />
+<form action="" id="inputForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your full name" pattern="^[a-zA-Z]+( [a-zA-Z]+){3}$" required />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" placeholder="Enter your personal email" pattern="^([a-zA-Z])+[0-9]*@([a-zA-Z])+\.([a-zA-Z])+$" required />
+
+  <label for="phone">Mobile:</label>
+  <input type="text" id="phone" placeholder="Enter your phone number" pattern="07[7-9][0-9]{7}" title="(078,079,077)*******" required />
+
+  <input type="submit" value="Click to Submit" onclick="submission()" />
+</form>
+
+<hr />
+
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+
+<textarea
+  name=""
+  class="textBox"
+  cols="37"
+  rows="10"
+  maxlength="300"
+  placeholder="Here the error messages will appear"
+></textarea>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nameInput = document.querySelector("#name");
+    const emailInput = document.querySelector("#email");
+    const phoneInput = document.querySelector("#phone");
+
+    nameInput.value = localStorage.getItem("name") || "";
+    emailInput.value = localStorage.getItem("email") || "";
+    phoneInput.value = localStorage.getItem("phone") || "";
+
+    renderData();
+  });
+
+  function submission() {
+    let name = document.querySelector("#name").value;
+    let phone = document.querySelector("#phone").value;
+    let email = document.querySelector("#email").value;
+    let textBox = document.querySelector(".textBox");
+    let inputData = { "name": name, "phone": phone, "email": email };
+
+    if (!name || !phone || !email) {
+      textBox.value = "All fields are required. Please fill them.\n";
+      return;
+    }
+
+    let existingData = JSON.parse(localStorage.getItem('inputData')) || [];
+    existingData.push(inputData);
+    localStorage.setItem('inputData', JSON.stringify(existingData));
+
+    renderData();
+ 
+  }
+
+  function renderData() {
+    const dataTableBody = document.querySelector('#dataTable tbody');
+    dataTableBody.innerHTML = '';
+
+    let storedData = JSON.parse(localStorage.getItem('inputData')) || [];
+
+    storedData.forEach(function (data) {
+      let newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${data.name}</td>
+        <td>${data.email}</td>
+        <td>${data.phone}</td>
+      `;
+      dataTableBody.appendChild(newRow);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+        const nameInput = document.querySelector("#name");
+        const emailInput = document.querySelector("#email");
+        const phoneInput = document.querySelector("#phone");
+
+        nameInput.value = localStorage.getItem("name") || "";
+        emailInput.value = localStorage.getItem("email") || "";
+        phoneInput.value = localStorage.getItem("phone") || "";
+      });
+
+      function submission() {
+        let name = document.querySelector("#name").value;
+        let phone = document.querySelector("#phone").value;
+        let email = document.querySelector("#email").value;
+        let textBox = document.querySelector(".textBox");
+        let inputData = [{ "name": name }, { "phone": phone }, { "email": email }];
+
+        for (let i = 0; i < inputData.length; i++) {
+          if (!inputData[i][Object.keys(inputData[i])[0]]) {
+            textBox.value += `The ${
+              Object.keys(inputData[i])[0]
+            } field is empty, please fill it.\n`;
+          }
+     
+        }
+      
+        localStorage.setItem("dataField", textBox.value);
+       
+
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const messageTextArea = document.querySelector(".textBox");
+
+        messageTextArea.value = localStorage.getItem("dataField") || "";
+      });
+</script>
+
+</body>
+</html>

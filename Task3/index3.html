@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3-Local Storage-Java Script</title>
+    <style>
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .column {
+        display: flex;
+        align-items: center;
+        padding-left: 90px;
+        padding-top: 50px;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+
+        height: 100vh;
+      }
+
+      .form-container {
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="column">
+        <div class="form-container register">
+          <h2>Register</h2>
+          <input type="text" id="firstName" placeholder="First Name" />
+          <input type="text" id="lastName" placeholder="Last Name" />
+          <input type="email" id="email" placeholder="Email" />
+          <input type="password" id="password" placeholder="Password" />
+          <button onclick="register()">Register</button>
+          <button class="toggle-btn" onclick="toggleForm()">
+            Already have an account? Login
+          </button>
+        </div>
+      </div>
+      <div class="column">
+        <div class="form-container login">
+          <h2>Login</h2>
+          <input type="email" id="loginEmail" placeholder="Email" />
+          <input type="password" id="loginPassword" placeholder="Passwor" />
+          <button onclick="login()">Login</button>
+          <button class="toggle-btn" onclick="toggleForm()">
+            Don't have an account? Register
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function register() {
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const user = { firstName, lastName, email, password };
+        localStorage.setItem("user", JSON.stringify(user));
+
+        alert("Registration Successful! Now you can login.");
+        clearForm();
+      }
+
+      function login() {
+        const loginEmail = document.getElementById("loginEmail").value;
+        const loginPassword = document.getElementById("loginPassword").value;
+
+        const storedUser = localStorage.getItem("user");
+        if (!storedUser) {
+          alert("User not found. Please register.");
+          return;
+        }
+
+        const user = JSON.parse(storedUser);
+        if (user.email === loginEmail && user.password === loginPassword) {
+          alert("Login Successful!");
+          clearForm();
+        } else {
+          alert("Invalid credentials. Please try again.");
+        }
+      }
+
+      function toggleForm() {
+        const registerForm = document.querySelector(".register");
+        const loginForm = document.querySelector(".login");
+
+        registerForm.classList.toggle("register");
+        registerForm.classList.toggle("login");
+
+        loginForm.classList.toggle("register");
+        loginForm.classList.toggle("login");
+      }
+
+      function clearForm() {
+        document
+          .querySelectorAll("input")
+          .forEach((input) => (input.value = ""));
+      }
+    </script>
+  </body>
+</html>

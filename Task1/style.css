@@ -1,0 +1,90 @@
+
+      body {
+        margin-top: 70px;
+        background: linear-gradient(to bottom, rgba(235, 70, 185, 0.979), blue);
+      }
+      .main-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      label {
+        display: block;
+        margin: 18px 0 5px 0;
+      }
+      .Container {
+        width: 400px;
+        height: 700px;
+        border: 1px solid black;
+        padding: 20px;
+        background-color: white;
+      }
+      input {
+        width: 100%;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .tiltle {
+        display: flex;
+        justify-content: center;
+      }
+      .gender label {
+        display: inline;
+      }
+      .gender input {
+        width: auto;
+      }
+      fieldset legend {
+        font-family: "Josefin Sans", sans-serif;
+      }
+      .language label {
+        display: inline;
+      }
+      .language input {
+        width: auto;
+      }
+
+      #submit {
+        margin-top: 30px;
+        height: 40px;
+        background-color: rgb(0, 0, 8);
+        color: rgb(255, 255, 255);
+        border-radius: 20px;
+      }
+      #submit:hover {
+        opacity: 0.8;
+      }
+      form p {
+        cursor: pointer;
+        color: red;
+        text-decoration: underline;
+        text-align: center;
+      }
+      /* ------------------------------------------------------box style-------------------------- */
+      .box {
+        width: 500px;
+        height: 230px;
+        border: 1px solid gray;
+        background-color: aliceblue;
+        margin-bottom: 20px;
+        margin-left: 20px;
+      }
+      .box p {
+        margin: 20px;
+        font-weight: bold;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      .row-containr {
+        display: grid;
+        grid-template-columns: 1fr;
+        display: none;
+      }
+.box {
+
+  color: red;
+}
+.box span{
+
+  color: black;
+}
